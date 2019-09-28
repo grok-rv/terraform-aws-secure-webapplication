@@ -76,3 +76,64 @@ publicsubnet = [
 ]
 
 vpc-id = vpc-01e28e0dba8de4bd4
+
+
+Setup of web application
+---------------------------------------------------
+login to bastion host first to configure the apache on the private ec2 servers since ssh access is blocked to web ec2 instances from ooutside
+
+
+ubuntu@ubuntu:~$ ssh ec2-user@3.219.34.123
+
+Permission denied (publickey).
+
+ubuntu@ubuntu:~$ eval `ssh-agent`
+
+Agent pid 5476
+
+ubuntu@ubuntu:~$ ssh ec2-user@3.219.34.123
+
+Permission denied (publickey).
+
+add your private key used for ssh access 
+
+ubuntu@ubuntu:~$ ssh-add /home/ubuntu/.ssh/id_rsa.pem 
+
+Identity added: /home/ubuntu/.ssh/id_rsa.pem (/home/ubuntu/.ssh/id_rsa.pem)
+
+ubuntu@ubuntu:~$ 
+ubuntu@ubuntu:~$ 
+ubuntu@ubuntu:~$ ssh -A ec2-user@3.219.34.123
+
+Last login: Sat Sep 28 04:04:09 2019 from ec2-18-144-40-117.us-west-1.compute.amazonaws.com
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux AMI
+      ___|\___|___|
+
+
+https://aws.amazon.com/amazon-linux-ami/2018.03-release-notes/
+
+2 package(s) needed for security, out of 6 available
+
+Run "sudo yum update" to apply all updates.
+
+
+  sudo yum update -y
+
+  sudo yum install -y httpd
+
+  sudo service https start
+
+  sudo chkconfig httpd on
+
+  echo "<h1>Hellow world! this web application built on AWS using terraform</h1>" | sudo tee /var/www/html/index.html
+
+ec2-user@ip-10-123-3-41 ~]$ echo "<h1>Hellow world! this web application built on AWS using terraform</h1>" | sudo tee /var/www/html/index.html
+
+<h1>Hellow world! this web application built on AWS using terraform</h1>
+
+
+Check the result on load balancer dns
+------------------------------------------
+copy and paste load balancer dns aws-alb-1824120787.us-east-1.elb.amazonaws.com in a browser to view the result

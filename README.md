@@ -137,3 +137,5 @@ ec2-user@ip-10-123-3-41 ~]$ echo "<h1>Hellow world! this web application built o
 Check the result on load balancer dns
 ------------------------------------------
 copy and paste load balancer dns aws-alb-1824120787.us-east-1.elb.amazonaws.com in a browser to view the result
+
+screenshot attached on alb-apache.PNG

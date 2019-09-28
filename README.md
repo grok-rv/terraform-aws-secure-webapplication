@@ -119,6 +119,29 @@ https://aws.amazon.com/amazon-linux-ami/2018.03-release-notes/
 Run "sudo yum update" to apply all updates.
 
 
+Now login to the private ec2 web servers 10.123.3.41 and 10.123.4.22 from bastion host to configure apache and index page. below commands on both vm's
+ 
+ ec2-user@ip-10-123-1-83 ~]$ ssh ec2-user@10.123.3.41
+
+The authenticity of host '10.123.3.41 (10.123.3.41)' can't be established.
+
+ECDSA key fingerprint is SHA256:meBMpXzxI4qaEaQ5PeX8C9eThd7ztNL7jx//jwUED7k.
+
+ECDSA key fingerprint is MD5:fb:10:22:74:99:87:55:b8:56:f0:2c:0e:21:98:15:1e.
+
+Are you sure you want to continue connecting (yes/no)? yes
+
+Warning: Permanently added '10.123.3.41' (ECDSA) to the list of known hosts.
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux AMI
+      ___|\___|___|
+
+
+https://aws.amazon.com/amazon-linux-ami/2018.03-release-notes/
+
+[ec2-user@ip-10-123-3-41 ~]$ 
+
   sudo yum update -y
 
   sudo yum install -y httpd
@@ -133,7 +156,7 @@ ec2-user@ip-10-123-3-41 ~]$ echo "<h1>Hellow world! this web application built o
 
 <h1>Hellow world! this web application built on AWS using terraform</h1>
 
-
+Repeat the same on other private ec2 vm 10.123.4.22
 Check the result on load balancer dns
 ------------------------------------------
 copy and paste load balancer dns aws-alb-1824120787.us-east-1.elb.amazonaws.com in a browser to view the result

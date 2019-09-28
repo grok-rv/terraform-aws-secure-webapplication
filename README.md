@@ -48,7 +48,7 @@ Outputs:
 
 S3_bucketname = bucket name is s3 bucket id is aws-terraf-59880
 
-a-loadbalancer-dnsname = aws-alb-182****.us-east-1.elb.amazonaws.com
+a-loadbalancer-dnsname = aws-alb-1824120787.us-east-1.elb.amazonaws.com
 
 bastion_vm-sg = sg-059bfc608f0a3cd49
 

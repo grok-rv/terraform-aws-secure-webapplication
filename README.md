@@ -160,3 +160,5 @@ Repeat the same on other private ec2 vm 10.123.4.22
 Check the result on load balancer dns
 ------------------------------------------
 copy and paste load balancer dns aws-alb-1824120787.us-east-1.elb.amazonaws.com in a browser to view the result
+
+screenshot attached on alb-apache.PNG

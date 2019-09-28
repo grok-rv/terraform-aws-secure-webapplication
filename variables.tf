@@ -11,12 +11,5 @@ variable "counts" {}
 variable "instancetype" {}
 variable "keyname" {}
 variable "publickeypath" {}
-#variable "bastion-sg" {}
-#variable "ec2-sg" {}
-/*variable "private-subnets" {
-  type = list
-}
-variable "public-subnet" {
-  type = list
-}
-*/
+
+

@@ -9,6 +9,12 @@ Design
 -------------------------
 Check diagram lab_diagram_CreatingSecureWebApplicationFromScratch.png for the design of this end project
 
+Requirement
+--------------------------
+terraform v0.12
+
+AWS provider from terrafrom init
+
 
 Usage
 -----------------------------------

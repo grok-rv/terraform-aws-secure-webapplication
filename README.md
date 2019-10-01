@@ -39,6 +39,10 @@ terraform apply tfplan
 
 terraform destroy -auto-approve
 
+Resource graph
+--------------------------------
+![](images/resource-graph.svg)
+
 
 Output
 --------------------------------------------

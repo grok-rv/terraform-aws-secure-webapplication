@@ -9,13 +9,13 @@ Design
 -------------------------
 Check diagram for the design of this end project
 
-![](images/lab_diagram_CreatingSecureWebApplicationFromScratch.png) 
+                ![](images/lab_diagram_CreatingSecureWebApplicationFromScratch.png) 
 
 Requirement
 --------------------------
-terraform v0.12
+terraform v0.12, python-pydot, python-pydot-ng and graphviz
 
-AWS provider from terrafrom init
+AWS provider version auto installed from terrafrom init
 
 
 Usage
@@ -41,7 +41,13 @@ terraform destroy -auto-approve
 
 Resource graph
 --------------------------------
-![](images/resource-graph.svg)
+Resource graph of the terraform plan. I have used graphviz to analyze it
+
+sudo apt install -y python-pydot python-pydot-ng graphviz
+
+terraform graph | dot -Tsvg > images/resource-graph.svg
+
+                              ![](images/resource-graph.svg)
 
 
 Output

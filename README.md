@@ -7,7 +7,7 @@ This project will create a bastion host for securing access to login to private 
 
 Design
 -------------------------
-Check diagram lab_diagram_CreatingSecureWebApplicationFromScratch.png for the design of this end project
+Check diagram ![](images/lab_diagram_CreatingSecureWebApplicationFromScratch.png) for the design of this end project
 
 Requirement
 --------------------------

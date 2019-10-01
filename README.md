@@ -172,3 +172,11 @@ copy and paste load balancer dns aws-alb-1824120787.us-east-1.elb.amazonaws.com 
 screenshot attached on 
 
 ![](images/alb-apache.PNG)
+
+Fututre work
+------------------------
+
+1. Need to create an elastic ip and attach it to the bastion host just in case if the bastion host need a reboot in any case it might lose the public ip 
+2. store terraform state file in s3 backend for availability and disaster recovery
+3. configure user data scripts to deploy  web servers during boot
+

@@ -7,7 +7,9 @@ This project will create a bastion host for securing access to login to private 
 
 Design
 -------------------------
-Check diagram ![](images/lab_diagram_CreatingSecureWebApplicationFromScratch.png) for the design of this end project
+Check diagram for the design of this end project
+
+![](images/lab_diagram_CreatingSecureWebApplicationFromScratch.png) 
 
 Requirement
 --------------------------
@@ -167,4 +169,6 @@ Check the result on load balancer dns
 ------------------------------------------
 copy and paste load balancer dns aws-alb-1824120787.us-east-1.elb.amazonaws.com in a browser to view the result
 
-screenshot attached on alb-apache.PNG
+screenshot attached on 
+
+![](images/alb-apache.PNG)

@@ -160,9 +160,6 @@ https://aws.amazon.com/amazon-linux-ami/2018.03-release-notes/
 
   echo "<h1>Hellow world! this web application built on AWS using terraform</h1>" | sudo tee /var/www/html/index.html
 
-ec2-user@ip-10-123-3-41 ~]$ echo "<h1>Hellow world! this web application built on AWS using terraform</h1>" | sudo tee /var/www/html/index.html
-
-<h1>Hellow world! this web application built on AWS using terraform</h1>
 
 Repeat the same on other private ec2 vm 10.123.4.22
 Check the result on load balancer dns

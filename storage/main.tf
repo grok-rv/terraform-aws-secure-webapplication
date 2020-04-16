@@ -36,9 +36,8 @@ resource "aws_dynamodb_table" "terraform_locks" {
     type = "S"
   }
   tags = {
-    nike-environment = "development"
-    nike-application = "twistlock"
-    nike-department  = "cis"
+    environment = "development"
+    application = "terraform"
   }
 }
 

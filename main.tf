@@ -26,7 +26,6 @@ terraform {
 
 module "storage" {
   source = "./storage"
-  projectname = var.projectname
 }
 ###################################################
 #--------mdouel networking for vpc,subnets,routes,IG,nat-GW------------

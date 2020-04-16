@@ -1,3 +1,13 @@
+variable "aws_region" {
+  description = "specify the aws cloud region"
+  default = "us-west-2"
+}
+
+variable "env" {
+  description = "specify the environment. eg: test or prod"
+  default     = "dev"
+}
+
 variable "projectname" {
   description = "assign a project name for the s3 bucket to append"
 }

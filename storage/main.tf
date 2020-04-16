@@ -1,15 +1,44 @@
 #----------------------------module/storage/main.tf---------------------
 
-resource "random_id" "bucket_id" {
-  byte_length = 2
+# -------------------------------------------------------------------
+# create a s3 bucket for remote backend s3 storage
+# ------------------------------------------------------------------------------
+
+resource "aws_s3_bucket" "terraform-tfstate" {
+  bucket = "aws-secure-web-app-state"
+  region = "us-west-2"
+  acl    = "private"
+  # Enable versioning on the bucket for state files
+  versioning {
+    enabled = true
+  }
+
+  # Enable server side encryption by default
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
 }
-#----------------------create a s3 bucket----------------------------------
-resource "aws_s3_bucket" "s3_bucket" {
-  bucket = "${var.projectname}-${random_id.bucket_id.dec}"
-  acl = "private"
-  force_destroy = true
+
+# -----------------------------------------------------------------------------------
+# create a dynamodb table for locking state
+# ---------------------------------------------------------------------------------
+
+resource "aws_dynamodb_table" "terraform_locks" {
+  name         = "aws-secure-web-app-state"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "LockID"
+  attribute {
+    name = "LockID"
+    type = "S"
+  }
   tags = {
-    Name = "tfs_bucket"
+    nike-environment = "development"
+    nike-application = "twistlock"
+    nike-department  = "cis"
   }
 }
 

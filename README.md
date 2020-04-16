@@ -21,13 +21,8 @@ AWS provider version auto installed from terrafrom init
 Usage
 -----------------------------------
 
-I did not load my aws credentials using variables or in any file. I have exported the default region, access key and secret on the shell to run my terraform init, get, plan, apply, destroy
+Load AWS credentials from file. I have exported the default region to us-west-2 but can be defined during plan using variable. 
 
-export AWS_DEFAULT_REGION="us-east-1"
-
-export AWS_ACCESS_KEY_ID="AKI*****************"
-
-export AWS_SECRET_ACCESS_KEY="vsfs********"
 
 terraform validate
 
@@ -184,6 +179,6 @@ Fututre work
 ------------------------
 
 1. Need to create an elastic ip and attach it to the bastion host just in case if the bastion host need a reboot in any case it might lose the public ip 
-2. store terraform state file in s3 backend for availability and disaster recovery
+#---taken care in this new commint -- 2. store terraform state file in s3 backend for availability and disaster recovery. For terraform backend logic, refer to https://blog.gruntwork.io/how-to-manage-terraform-state-28f5697e68fa
 3. configure user data scripts to deploy  web servers during boot
 

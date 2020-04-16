@@ -1,6 +1,11 @@
 output "S3_bucketname" {
-  value = "bucket name is ${module.storage.s3_bucket}"
+  value = "bucket name is ${module.storage.terraform-tfstate}"
 }
+
+output "dynamodb_table" {
+  value = " dynamodb tables is ${module.storage.terraform_locks}"
+}
+
 output "publicsubnet" {
   value = "${module.network.public_Subnet}"
 

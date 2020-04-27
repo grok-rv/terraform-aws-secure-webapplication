@@ -2,7 +2,9 @@
 provider "aws" {
   region                  = var.aws_region
   //shared_credentials_file = "~/.aws/credentials"
-  role_arn                = "arn:aws:iam::041470850105:role/aws-jenkins"
+  assume_role {
+    role_arn                = "arn:aws:iam::${var.role_acc}:role/aws-jenkins"
+  }
   profile                 = var.env
   version                 = "~> 2.0"
 }

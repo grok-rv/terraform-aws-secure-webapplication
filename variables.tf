@@ -8,6 +8,11 @@ variable "env" {
   default     = "la"
 }
 
+variable "role_acc" {
+  description = "role account"
+  default     = "843653485881"
+}
+
 variable "accessIp" {
   default = "0.0.0.0/0"
   description = "pass the cidr block for bastion host restricting access to your Mypublic ip or vpn ip or allow it from 0.0.0.0/0 if wanted to open for all"

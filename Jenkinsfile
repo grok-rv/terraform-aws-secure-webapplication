@@ -1,5 +1,3 @@
-//----Jenkinsfile---------------
-
 import groovy.json.JsonOutput
 env.terraform_version = '0.12.2'
 pipeline {
@@ -28,7 +26,6 @@ pipeline {
     disableConcurrentBuilds()
     timeout(time: 1, unit: 'HOURS')
     //withAWS(credentials: params.credential, region: params.region)
-    //ansiColor('xterm')
   }
 
   agent { label 'master' }
@@ -72,8 +69,6 @@ pipeline {
         script {
           withAWS([profile:${params.env}, region:${params.aws_region}, role:${params.rolename}, roleAccount:${params.role-account}]) {
 
-            // Format cidrs into a list array
-            //def ips = '["' + params.accessIp.replaceAll(/\s+/,'\",\"') + '"]'
 
             sh """
               cd terraform-aws-secure-webapplication

@@ -7,7 +7,7 @@ pipeline {
     string(name: 'aws_region', defaultValue : 'us-west-2', description: "AWS region.")
     string(name: 'env', defaultValue: 'la', description: "lab environment")
     string(name: 'rolename', defaultValue: 'aws-jenkins', description: "default aws role for jenkins")
-    string(name: 'role-account', defaultValue: '114622770664', description: "default aws role account for jenkins")
+    string(name: 'role-account', defaultValue: '843653485881', description: "default aws role account for jenkins")
     string(name: 'cluster', defaultValue: 'twistlock-eks-terraform', description: "eks cluster name")
     string(name: 'cidrblock', defaultValue : '10.123.0.0/16', description: "First 2 octets of vpc network; eg 10.0")
     string(name: 'cidr_public', defaultValue: '["10.123.1.0/24","10.123.2.0/24"]', description: "cidr block for public subnets")
@@ -43,7 +43,7 @@ pipeline {
 
     stage('Install dependencies') {
       steps {
-        sh "sudo apt install wget zip python-pip -y"
+        sh "sudo yum install wget zip python-pip -y"
         sh "cd /tmp"
         sh "curl -o terraform.zip https://releases.hashicorp.com/terraform/'$terraform_version'/terraform_'$terraform_version'_linux_amd64.zip"
         sh "unzip terraform.zip"

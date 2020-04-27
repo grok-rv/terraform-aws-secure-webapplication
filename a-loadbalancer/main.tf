@@ -32,12 +32,12 @@ resource "aws_lb_target_group" "alb-frontend" {
 
 #--------------create a http listenr for load balancer----------------------
 resource "aws_lb_listener" "alb-frontend" {
-  load_balancer_arn = "${aws_lb.alb-frontend.arn}"
+  load_balancer_arn = aws_lb.alb-frontend.arn
   port = 80
   protocol = "HTTP"
   default_action {
     type = "forward"
-    target_group_arn = "${aws_lb_target_group.alb-frontend.arn}"
+    target_group_arn = aws_lb_target_group.alb-frontend.arn
   }
   
 }
@@ -45,7 +45,7 @@ resource "aws_lb_listener" "alb-frontend" {
 #-----------attach ec2 instances to the the application load balancer---------------------------------
 resource "aws_lb_target_group_attachment" "alb-frontend" {
   count = 2
-  target_group_arn = "${aws_lb_target_group.alb-frontend.arn}"
+  target_group_arn = aws_lb_target_group.alb-frontend.arn
   target_id =  "${element(split(", ", join(", ", var.target-id)), count.index)}"
   port = 80
 }

@@ -6,14 +6,14 @@ pipeline {
     choice(name: 'action', choices: 'create\ndestroy', description: 'Create/update or destroy the eks cluster.')
     string(name: 'aws_region', defaultValue : 'us-west-2', description: "AWS region.")
     string(name: 'env', defaultValue: 'la', description: "lab environment")
-    string(name: 'rolename', defaultValue: 'aws-jenkins', description: "default aws role for jenkins")
-    string(name: 'role-account', defaultValue: '843653485881', description: "default aws role account for jenkins")
+    //string(name: 'rolename', defaultValue: 'aws-jenkins', description: "default aws role for jenkins")
+    //string(name: 'role-account', defaultValue: '534992115889', description: "default aws role account for jenkins")
     string(name: 'cluster', defaultValue: 'twistlock-eks-terraform', description: "eks cluster name")
     string(name: 'cidrblock', defaultValue : '10.123.0.0/16', description: "First 2 octets of vpc network; eg 10.0")
     string(name: 'cidr_public', defaultValue: '["10.123.1.0/24","10.123.2.0/24"]', description: "cidr block for public subnets")
     string(name: 'cidr_private', defaultValue: '["10.123.3.0/24","10.123.4.0/24"]', description: "cidr block for private subnets")
     string(name: 'count', defaultValue : '2', description: "Number of vpc subnets/AZs.")
-    //string(name: 'credential', defaultValue : 'aws-jenkins', description: "Jenkins credential that provides the AWS access key and secret.")
+    string(name: 'credential', defaultValue : 'jenkins-la', description: "Jenkins credential that provides the AWS access key and secret.")
     string(name: 'accessIp', defaultValue: '0.0.0.0/0', description: "cidr block for bastion host restrict to your ip or vpn")
     string(name: 'instancetype', defaultValue: 't2.micro', description: "instance type for ec2")
     string(name: 'keyname', defaultValue: 'tfs-key', description: "keyname to be used for ssh access to ec2 vm")
@@ -25,7 +25,7 @@ pipeline {
   options {
     disableConcurrentBuilds()
     timeout(time: 1, unit: 'HOURS')
-    //withAWS(credentials: params.credential, region: params.region)
+    withAWS(credentials: params.credential, region: params.aws_region)
   }
 
   agent { label 'master' }
@@ -67,7 +67,11 @@ pipeline {
       }
       steps {
         script {
-          withAWS([profile:${params.env}, region:${params.aws_region}, role:${params.rolename}, roleAccount:${params.role-account}]) {
+          //withAWS([profile:${params.env}, region:${params.aws_region}, role:${params.rolename}, roleAccount:${params.role-account}]) 
+          withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', 
+            credentialsId: params.credential, 
+            accessKeyVariable: 'AWS_ACCESS_KEY_ID',  
+            secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
 
 
             sh """
@@ -96,8 +100,11 @@ pipeline {
         script {
           input "Create/update Terraform stack eks-${params.cluster} in aws?"
 
-          withAWS([profile:${params.env}, region:${params.aws_region}, role:${params.rolename}, roleAccount:${params.role-account}]) {
-
+          //withAWS([profile:${params.env}, region:${params.aws_region}, role:${params.rolename}, roleAccount:${params.role-account}]) {
+          withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', 
+            credentialsId: params.credential, 
+            accessKeyVariable: 'AWS_ACCESS_KEY_ID',  
+            secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
             sh """
               cd terraform-aws-secure-webapplication
               terraform apply -input=false -auto-approve ${plan}
@@ -115,8 +122,11 @@ pipeline {
         script {
           input "Destroy Terraform stack eks-${params.cluster} in aws?"
 
-          withAWS([profile:${params.env}, region:${params.aws_region}, role:${params.rolename}, roleAccount:${params.role-account}]) {
-
+         // withAWS([profile:${params.env}, region:${params.aws_region}, role:${params.rolename}, roleAccount:${params.role-account}]) {
+         withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', 
+            credentialsId: params.credential, 
+            accessKeyVariable: 'AWS_ACCESS_KEY_ID',  
+            secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
             sh """
               cd terraform-aws-secure-webapplication
               terraform destroy -auto-approve

@@ -1,10 +1,10 @@
 #-----------Provider AWS --------------------
 provider "aws" {
   region                  = var.aws_region
-  //shared_credentials_file = "~/.aws/credentials"
-  assume_role {
-    role_arn                = "arn:aws:iam::${var.role_acc}:role/aws-jenkins"
-  }
+  #shared_credentials_file = "~/.aws/credentials"
+  #assume_role {
+   # role_arn                = "arn:aws:iam::${var.role_acc}:role/aws-jenkins"
+  #}
   profile                 = var.env
   version                 = "~> 2.0"
 }

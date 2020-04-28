@@ -46,7 +46,7 @@ variable "keyname" {
   description = "keyname to be used for ssh access to bastion and private ec2 instances. example \"tfs-key\""
 }
 variable "publickeypath" {
-  default = "/home/ramu/.ssh/id_rsa.pub"
+  default = "~/.ssh/id_rsa.pub"
   description = "the file path location to your pub key to be passed on to ec2 instances. example \"/home/username/.ssh/id_rsa.pub\""
 }
 

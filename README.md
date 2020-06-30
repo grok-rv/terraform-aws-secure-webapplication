@@ -13,7 +13,7 @@ Check diagram for the design of this end project
 
 ## Requirement
 --------------------------
-terraform v0.12, aws-iam-authenticator, python-pydot, python-pydot-ng and graphviz for resource graph visualization
+terraform v0.12, python-pydot, python-pydot-ng and graphviz for resource graph visualization
 
 AWS provider version auto installed from terrafrom init
 
@@ -25,10 +25,8 @@ AWS provider version auto installed from terrafrom init
    - mv ~/terraform /usr/local/bin/teraform
    - set PATH to reflect the binary. Refer to link in step 1 for installation and setup binary
    - verify the installation: terraform -h
- 
-2. Installing aws-iam-authenticator for [Linux] (https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html)
 
-3. Installing python-pydot,python-pydot-ng and graphviz for graph visualization:
+2. Installing python-pydot,python-pydot-ng and graphviz for graph visualization:
    - sudo apt install python-pydot python-pydot-ng graphviz
 
 ## Usage
